@@ -7,7 +7,7 @@ module.exports.serviceMerge = () => {
     return services;
 }
 
-module.exports.typeMerge = function () {
+module.exports.schemaMerge = function () {
     return Array.prototype.reduce.call(arguments, (prev, current, types) => {
         return prev.concat(current);
     })

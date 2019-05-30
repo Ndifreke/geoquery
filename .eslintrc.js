@@ -1,6 +1,6 @@
 module.exports = {
     "env": {
-        "browser": true,
+        "browser": false,
         "es6": true,
         "node": true,
     },
@@ -10,21 +10,10 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
+        "indent": ["error", "tab"],
+        "no_undef": ["warn"],
+        "linebreak-style": ["error", "unix"],
+        "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+        "semi": ["error", "always"]
     }
 };

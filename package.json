@@ -27,7 +27,7 @@
     },
     "scripts": {
         "coveralls":"cat ./coverage/lcov.info | coveralls",
-        "test": "npm run build && jest index.js --coverage",
+        "test": "jest server/__tests__/index.js --coverage",
         "clean": "rm -rf build",
         "build": "npm run clean && babel ./server -d build --copy-files",
         "start": "npm run build && node build/__tests__/index.js",

@@ -1,3 +1,2 @@
-it ('should pass', () => {
-  expect(1).toBe(1);
-});
+import './utility/UtilityTest';
+import './country/CountryHelperTest';

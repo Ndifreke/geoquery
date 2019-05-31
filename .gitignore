@@ -1,6 +1,5 @@
 nbproject
 node_modules
-temp
 build
 coverage
 .env

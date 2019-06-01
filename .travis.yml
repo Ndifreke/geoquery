@@ -1,9 +1,12 @@
 language: node_js
 nodejs:
   - node
+env:
+  - token=${CODECOV_TOKEN}
 install:
   - npm install
 script:
+- echo $token
 - npm run test
 - bash <(curl -s https://codecov.io/bash)
 #- npm run coveralls

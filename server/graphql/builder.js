@@ -1,17 +1,14 @@
 import { graphql, buildSchema } from 'graphql';
-import schemaBuilder from './schema/schemaBuilder';
-import queryBuilder from './query/queryBuilder';
-import { schemaMerge, serviceMerge } from './util/mergeUtil';
-import services from './service/serviceBuilder';
+import querySchema from './query/queryBuilder';
+import geographyServices from './service/serviceBuilder';
+import util from './util';
 
-const schemaTypes = schemaMerge(schemaBuilder, queryBuilder);
-const serviceTypes = serviceMerge({a: () =>{}});
-
-const schema = buildSchema(schemaTypes);
+const queryTypeMerge = util.typeSchemaMerger(querySchema);
+const schema = buildSchema(queryTypeMerge);
 
 export default async (query) => {
-	const response = await graphql(schema, query, serviceTypes);
+	const response = await graphql(schema, query, geographyServices);
 	return Promise.resolve(response);
 };
 
-export const schemaStructure = schemaTypes;
+export const schemaStructure = queryTypeMerge;

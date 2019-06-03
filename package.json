@@ -11,6 +11,7 @@
     "author": "Ndifreke Ekim",
     "contributors": [],
     "dependencies": {
+        "babel-plugin-module-resolver": "^3.2.0",
         "dotenv": "^8.0.0",
         "graphql": "latest",
         "nodemon": "^1.19.0"
@@ -26,11 +27,11 @@
         "coveralls": "^3.0.3"
     },
     "scripts": {
-        "coveralls":"cat ./coverage/lcov.info | coveralls",
-        "test": "jest server/__tests__/index.js --coverage",
+        "coveralls": "cat ./coverage/lcov.info | coveralls",
+        "test": "jest __tests__/index.js --coverage",
         "clean": "rm -rf build",
         "build": "npm run clean && babel ./server -d build --copy-files",
-        "start": "npm run build && node build/__tests__/index.js",
+        "start": "npm run build && node build/index.js",
         "nodemon": "nodemon --exec babel-node server/index.js"
     }
 }

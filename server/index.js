@@ -1,6 +1,5 @@
 import { createServer } from 'http';
-import { schemaStructure } from './graphql/builder';
-import queryHandler from './graphql/builder';
+import queryHandler, {schemaStructure}  from './graphql/builder';
 import { readFileSync } from 'fs';
 import dotenv from 'dotenv';
 
@@ -12,7 +11,6 @@ const html = htmlTemplate.toString().replace('#graphQLschema', schemaStructure);
 const app = createServer();
 
 app.on('request', async (req, res) => {
-	console.log(req.method);
 	switch (req.method) {
 	case 'GET':
 		res.end(sendForm());

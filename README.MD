@@ -3,6 +3,7 @@ A Geographical data serving services written in Node.js and graphQL
 
 [![Build Status](https://travis-ci.org/Ndifreke/geoquery.svg?branch=develop)](https://travis-ci.org/Ndifreke/geoquery)
 [![codecov](https://codecov.io/gh/Ndifreke/geoquery/branch/develop/graph/badge.svg)](https://codecov.io/gh/Ndifreke/geoquery)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d92ee6bda46f7c661ea5/maintainability)](https://codeclimate.com/github/Ndifreke/geoquery/maintainability)
 
 ## About
 Geoquery serves Geographical data from static JSON files located in the `/server/source` directory of the project. On first time of starting the server the JSON data is read into memory and subsequent request are served from the memory.

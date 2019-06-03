@@ -62,13 +62,17 @@ class CountryHelper {
  * @param {string} countryIdentifier value that identifes the country
  */
 	lookupBy(lookupMode, countryIdentifier){
+		let country = null;
 		const getCountry = (identifier) => {
+			let result = null;
 			for (const countryName in this.countries) {
 				const country = this.countries[countryName];
-				if (lookupMode in country && new RegExp(`^${identifier}$`,'i').test(country[lookupMode])) 
-					return country;
+				if (lookupMode in country && new RegExp(`^${identifier}$`,'i').test(country[lookupMode])) {
+					result =  country;
+					break;
+				}
 			}
-			return null;
+			return result;
 		};
 		const { phone, areaCode, iso , countryName: name } = CountryHelper.LOOKUP_MODES;
 		switch(lookupMode){
@@ -76,11 +80,10 @@ class CountryHelper {
 		case iso      :
 		case name     : 
 		case areaCode : 
-			return getCountry(countryIdentifier);
+			country = getCountry(countryIdentifier);
 		// dont waste time looking up unknown country lookup mode
-		default: return null;
 		}
-
+		return country;
 	}
 
 	//TODO add country lookup by capital

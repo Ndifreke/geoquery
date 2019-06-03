@@ -55,17 +55,17 @@ class CountryHelper {
 		return this.lookupBy(isoMode, iso);
 	}
 	
-/**
+	/**
  * Search for a country using one of the modes defined by countryHelper.LOOKUP_MODE.
  * A match is found if the value country[LOOKUP_MODE] == [modeIdentifier]
  * @param {CountryHelper.LOOKUP_MODES} lookupMode mode used to search for the country
- * @param {string} modeIdentifier value that identifes the country
+ * @param {string} countryIdentifier value that identifes the country
  */
-	lookupBy(lookupMode, modeIdentifier){
+	lookupBy(lookupMode, countryIdentifier){
 		const getCountry = (identifier) => {
 			for (const countryName in this.countries) {
 				const country = this.countries[countryName];
-				if (lookupMode in country && country[lookupMode] === identifier) 
+				if (lookupMode in country && new RegExp(`^${identifier}$`,'i').test(country[lookupMode])) 
 					return country;
 			}
 			return null;
@@ -76,7 +76,7 @@ class CountryHelper {
 		case iso      :
 		case name     : 
 		case areaCode : 
-			return getCountry(modeIdentifier);
+			return getCountry(countryIdentifier);
 		// dont waste time looking up unknown country lookup mode
 		default: return null;
 		}
@@ -107,6 +107,43 @@ class CountryHelper {
 		const country = fs.readFileSync(path.join(DATA_SOURCE_PATH, 'countries.json'));
 		return this.parseCountryFile(country);
 	}
+	static isNameMode(input){
+		return /^.*name.*$/ig.test(input);
+	}
+
+	static isISOMode(input){
+		return /^.*iso.*$/ig.test(input);
+	}
+
+	static isPhoneMode(input){
+		return /^.*(phone|number|mobile|cell).*$/ig.test(input);
+	}
+
+	static isAreaCodeMode(input){
+		return /^.*area.*$/ig.test(input);
+	}
+
+	/**
+	 * Make a prediction that to determine if the input matches any
+	 * of the modes of searching for a country
+	 * @param {string} input to make prediction from
+	 * @returns {LOOKUP_MODES} if there is a match or null if no match 
+	 */
+	static predictLookupMode(input){
+		if(CountryHelper.isAreaCodeMode(input)){
+			return CountryHelper.LOOKUP_MODES.areaCode;
+		}
+		if(CountryHelper.isPhoneMode(input)){
+			return CountryHelper.LOOKUP_MODES.phone;
+		}
+		if(CountryHelper.isISOMode(input)){
+			return CountryHelper.LOOKUP_MODES.iso;
+		}
+		if( CountryHelper.isNameMode(input) ){
+			return CountryHelper.LOOKUP_MODES.countryName;
+		}
+		return null;
+	}
 
 }
 
@@ -117,4 +154,26 @@ CountryHelper.LOOKUP_MODES = {
 	areaCode		: 'area'
 };
 
-export default new CountryHelper();
+const countryHelper = new CountryHelper();
+
+/**
+ * Load a country given the Id that identifies the country and the mode to use in looking up 
+ * the country
+ * @param {id} param0 an object containing {id, mode} that will be used for searching a country
+ * @returns {Object} country
+ */
+const loadCountry = ({ id, mode }) => {
+	switch(CountryHelper.predictLookupMode(mode)){
+	case CountryHelper.LOOKUP_MODES.areaCode:
+		return countryHelper.getCountryByAreaCode(id);
+	case CountryHelper.LOOKUP_MODES.countryName:
+		return countryHelper.getCountryByName(id);
+	case CountryHelper.LOOKUP_MODES.phone:
+		return countryHelper.getCountryByPhone(id);
+	case CountryHelper.LOOKUP_MODES.iso:
+		return countryHelper.getCountryByISO(id);
+	default: return null;
+	}
+};
+CountryHelper.loadCountry = loadCountry;
+export  default CountryHelper ;

@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-import utils from '../../graphql/util';
+import utils from '../../server/graphql/util';
 
 const  { 
-	schemaMerge, 
+	typeSchemaMerger, 
 	isAlphabet, 
 	isDigit,
 	serviceMerge 
@@ -24,7 +24,7 @@ describe('utilty test', () => {
 	it('should merge GraphQL types', () => {
 		const type1 = `{ type Country{ name : String } }`;
 		const type2 = '{ type Country{ name : String } }';
-		expect(schemaMerge(type1, type2)).toBe(type1.concat(type2));
+		expect(typeSchemaMerger(type1, type2)).toBe(type1.concat(type2));
 	});
 
 	it('should merge GraphQL services', () => {

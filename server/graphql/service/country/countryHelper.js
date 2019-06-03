@@ -166,17 +166,22 @@ const countryHelper = new CountryHelper();
  * @returns {Object} country
  */
 const loadCountry = ({ id, mode }) => {
+	let country = null;
 	switch(CountryHelper.predictLookupMode(mode)){
 	case CountryHelper.LOOKUP_MODES.areaCode:
-		return countryHelper.getCountryByAreaCode(id);
+		country = countryHelper.getCountryByAreaCode(id);
+		break;
 	case CountryHelper.LOOKUP_MODES.countryName:
-		return countryHelper.getCountryByName(id);
+		country = countryHelper.getCountryByName(id);
+		break;
 	case CountryHelper.LOOKUP_MODES.phone:
-		return countryHelper.getCountryByPhone(id);
+		country =  countryHelper.getCountryByPhone(id);
+		break;
 	case CountryHelper.LOOKUP_MODES.iso:
-		return countryHelper.getCountryByISO(id);
-	default: return null;
+		country = countryHelper.getCountryByISO(id);
+		break;
 	}
+	return country;
 };
 CountryHelper.loadCountry = loadCountry;
 export  default CountryHelper ;

@@ -1,7 +1,5 @@
 ## other configuration excluded from example...
 exclude_patterns:
-- "__tests__/"
-- "spec/"
-- "**/vendor/"
+- "__tests__/.*"
   eslint:
    	enabled: true

@@ -1,4 +1,6 @@
 module.exports = {
+	verbose: false,
+	rootDir: __dirname,
 	moduleNameMapper: {
 		'^@server(.*)$': '<rootDir>/server$1',
 		'^@graphql(.*)$': '<rootDir>/server/graphql$1',

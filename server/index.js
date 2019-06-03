@@ -16,7 +16,7 @@ app.on('request', async (req, res) => {
 		break;
 
 	case 'POST':
-		req.on('data', (data) => {
+		req.on( 'data', (data) => {
 			queryAPI(req, res, data.toString());
 		});
 		break;

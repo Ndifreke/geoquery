@@ -7,7 +7,6 @@ dotenv.config();
 
 const htmlTemplate = readFileSync(__dirname + '/index.html');
 const html = htmlTemplate.toString().replace('#graphQLschema', schemaStructure);
-
 const app = createServer();
 
 app.on('request', async (req, res) => {

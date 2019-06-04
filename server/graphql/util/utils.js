@@ -1,4 +1,4 @@
-
+import {exec} from 'child_process';
 /**
  * Merge/combine one or more graphql services into a single source of services. 
  * @returns object a merger of services passed as argument to servicesMerge
@@ -29,4 +29,51 @@ function isDigit(arg){
 function isAlphabet(arg){
 	return /^[a-z]+$/gi.test(arg);
 }
-export default { isAlphabet, isDigit, typeSchemaMerger, serviceMerge};
+
+const platforms = {
+	MAC:'darwin',
+	WINDOW: 'win32',
+	LINUX: 'linux',
+};
+
+/**
+ * get a suitable string that can be used from command line to start google chrome
+ * @param {platforms} platform host operating system
+ * @returns {string} string to start chrome browser
+ */
+const getStartChromeCommand = (platform)=>{
+	let command = null;
+	switch(platform){
+	case platforms.WINDOW:
+		command = `start chrome`;
+		break;
+	case platforms.MAC:
+		command = `open -a "Google Chrome"`;
+		break;
+	case platforms.LINUX: 
+		command =  `google-chrome`;
+		break;
+	}
+	return command;
+};
+
+/**
+ * start Google chrome using the provided port
+ * @param {number} port 
+ */
+const startBrowser = (port) => {
+	const command = `${getStartChromeCommand(process.platform)} http://localhost:${port}`;
+	exec(command, (err, stdout, stderr) => {
+		if(err)console.log(err,stderr, stdout);
+	});
+};
+
+export default { 
+	isAlphabet, 
+	isDigit, 
+	typeSchemaMerger, 
+	serviceMerge, 
+	startBrowser, 
+	getStartChromeCommand,
+	platforms
+};

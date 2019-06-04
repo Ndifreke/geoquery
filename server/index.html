@@ -1,93 +1,87 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
-    <head>
-        <title>GraphQL Test</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <style type="text/css">
-            .container{
-                display: flex;
-            }
-            #response{
-                margin: inherit;
-            }
-            textArea{
-                font-size:18px;
-                font-weight: 100;
-            }
-            input{
-                font-size:20px;
-                font-family: monospace;
-                padding: 100px;
-                height:50px
-            }
+<head>
+	<title>GraphQL Test</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-            #schema{
-                padding: 8px;
-                font-size: 18px;
-                font-family: consolas;
-                font-weight: 100;
-                margin-top: 0;
-            }
+	<style type="text/css">
+		.container {
+			display: flex;
+		}
 
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div>
-                <form method="POST">
-                    <textarea name="query" rows="10" cols="20" > 
- {
-    isMale ( name: 1), 
-        country { 
-        __typename,
-    ... on Country {
-        stateCount 
-        }
-    }
-}
-                               
-                    </textarea>
-                    <br/>
-                    <input type="submit" value="Send"/> 
-                </form>
-            </div>
+		#response {
+			margin: inherit;
+		}
 
-            <div>
-                <pre id="schema">
-                      #graphQLschema  
-                </pre>
+		textarea {
+			font-size: 18px;
+			font-weight: 100;
+		}
 
-            </div>
-        </div>
+		input {
+			font-size: 20px;
+			font-family: monospace;
+			padding: 100px;
+			height: 50px;
+		}
 
-        <div>
-            <p id="response">
-            </p>
-        </div>
+		#schema {
+			padding: 8px;
+			font-size: 18px;
+			font-family: consolas;
+			font-weight: 100;
+			margin-top: 0;
+		}
 
-        <script type="text/javascript">
+	</style>
+</head>
 
-            document.forms[0].onsubmit = async function (event) {
-                event.preventDefault();
-                const query = document.forms[0].query.value;
-                const result = await fetch("/", {
-                    method: "POST",
-                    body: query
-                });
-                const text = await result.text();
-                document.querySelector("#response").innerHTML = `<pre> ${text} </pre>`
-            }
+<body>
+	<div class="container">
+		<div>
+			<form method="POST">
+				<textarea name="query" rows="10" cols="20">
+				{
+					country(id:"ghana", mode: "name"){
+							name
+					}
+			 }
+			</textarea>
+				<br />
+				<input type="submit" value="Send" />
+			</form>
+		</div>
 
-            const schemaHeight = parseInt(document.querySelector("#schema").getBoundingClientRect().height/22.0);
-            document.querySelector("textArea").setAttribute("rows", schemaHeight);
-            console.log(schemaHeight);
-        </script>
-    </body>
+		<div>
+			<pre id="schema">#graphQLschema  </pre>
+		</div>
+	</div>
+
+	<div>
+		<p id="response"></p>
+	</div>
+
+	<script type="text/javascript">
+		document.forms[0].onsubmit = async function (event) {
+			event.preventDefault();
+			const query = document.forms[0].query.value;
+			const result = await fetch('/', {
+				method: 'POST',
+				body: query
+			});
+			const text = await result.text();
+			document.querySelector('#response').innerHTML = `<pre> ${text} </pre>`;
+		};
+
+		const schemaHeight = parseInt(
+			document.querySelector('#schema').getBoundingClientRect().height / 22.0
+		);
+		document.querySelector('textArea').setAttribute('rows', schemaHeight);
+		console.log(schemaHeight);
+	</script>
+</body>
+
 </html>

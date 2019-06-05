@@ -1,4 +1,4 @@
-import ContinetService from '../../server/graphql/service/continent/KontinetService';
+import ContinetService from '../../server/graphql/service/continent/ContinetService';
 
 const { continent } = ContinetService;
 

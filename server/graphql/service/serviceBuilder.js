@@ -1,5 +1,5 @@
 import CountryService from './country/CountryService';
-import ContinetService from './continent/KontinetService';
+import ContinetService from './continent/ContinetService';
 const  { continents } = ContinetService;
 
 const root = {

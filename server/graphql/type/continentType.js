@@ -1,6 +1,5 @@
 module.exports =
-`
-enum Continent {
+`enum Continents {
 Africa,
 Europe,
 Asia,
@@ -9,5 +8,4 @@ South_America,
 Australia,
 Antarctica,
 },
-
 `;

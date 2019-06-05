@@ -20,6 +20,7 @@ function typeSchemaMerger () {
 	return Array.prototype.reduce.call(arguments, (prevSchema, currentSchema) => {
 		return prevSchema.concat(currentSchema);
 	});
+
 }
 
 function isDigit(arg){
@@ -59,7 +60,7 @@ const getStartChromeCommand = (platform)=>{
 
 /**
  * start Google chrome using the provided port
- * @param {number} port 
+ * @param {Number} port 
  */
 const startBrowser = (port) => {
 	const command = `${getStartChromeCommand(process.platform)} http://localhost:${port}`;

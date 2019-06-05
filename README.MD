@@ -67,4 +67,6 @@ const result =  await geoquery(query);
 ### Credit
 - [@rancheta](https://github.com/rancheta/countryRegionCityJSON) Hosted original Geographical JSON data
 
+### Changelog
+
 

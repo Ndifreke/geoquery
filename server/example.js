@@ -3,7 +3,7 @@ import { createServer } from 'http';
 import { schemaStructure } from './graphql/builder';
 import { readFileSync } from 'fs';
 import dotenv from 'dotenv';
-import { geoquery} from './index';
+import geoquery from './index';
 import util from './graphql/util';
 
 const startBrowser = util.startBrowser;

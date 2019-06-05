@@ -133,19 +133,17 @@ class CountryHelper {
 	 * @returns {LOOKUP_MODES} if there is a match or null if no match 
 	 */
 	static predictLookupMode(input){
+		let mode = null;
 		if(CountryHelper.isAreaCodeMode(input)){
-			return CountryHelper.LOOKUP_MODES.areaCode;
+			mode = CountryHelper.LOOKUP_MODES.areaCode;
+		}else if(CountryHelper.isPhoneMode(input)){
+			mode = CountryHelper.LOOKUP_MODES.phone;
+		}else if(CountryHelper.isISOMode(input)){
+			mode = CountryHelper.LOOKUP_MODES.iso;
+		}else if( CountryHelper.isNameMode(input) ){
+			mode = CountryHelper.LOOKUP_MODES.countryName;
 		}
-		if(CountryHelper.isPhoneMode(input)){
-			return CountryHelper.LOOKUP_MODES.phone;
-		}
-		if(CountryHelper.isISOMode(input)){
-			return CountryHelper.LOOKUP_MODES.iso;
-		}
-		if( CountryHelper.isNameMode(input) ){
-			return CountryHelper.LOOKUP_MODES.countryName;
-		}
-		return null;
+		return mode;
 	}
 
 }

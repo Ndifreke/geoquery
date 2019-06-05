@@ -5,7 +5,9 @@ const  {
 	typeSchemaMerger, 
 	isAlphabet, 
 	isDigit,
-	serviceMerge 
+	serviceMerge,
+	getStartChromeCommand,
+	platforms
 } = utils;
 
 describe('utilty test', () => {
@@ -36,4 +38,12 @@ describe('utilty test', () => {
 		expect(servicesMerge[service1.name]).toBe(service1);
 		expect(servicesMerge[service2.name]).toBe(service2);
 	});
+
+	it('should return appropriate command to start chrome', ()=>{
+		expect(getStartChromeCommand(platforms.LINUX)).not.toBe(null);
+		expect(getStartChromeCommand(platforms.WINDOW)).not.toBe(null);
+		expect(getStartChromeCommand(platforms.MAC)).not.toBe(null);
+		expect(getStartChromeCommand(process.platform)).not.toBe(null);
+	});
+
 });

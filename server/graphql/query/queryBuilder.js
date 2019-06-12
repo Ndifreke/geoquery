@@ -1,6 +1,12 @@
 import util from '../util';
 import countryQuery from './countryQuery';
+import continentQuery from './continetQuery';
 
-const queries = util.typeSchemaMerger(countryQuery);
+const queries = util.typeSchemaMerger(
+	countryQuery,
+	continentQuery
+);
 
-export default queries;
+export default `type Query {${queries} 
+},\n`;
+

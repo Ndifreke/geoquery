@@ -1,7 +1,7 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
-import { DATA_SOURCE_PATH } from '../../../constant';
+const { DATA_SOURCE_PATH } = require('../../../constant');
 
 class CountryHelper {
 
@@ -90,7 +90,7 @@ class CountryHelper {
 
 	/**
 	 * Parse country data and store it by name in an object
-	 * @param {*} coutryFile 
+	 * @param { String } coutryFile JSON string
 	 */
 	parseCountryFile(coutryFile) {
 		try {
@@ -181,5 +181,6 @@ const loadCountry = ({ id, mode }) => {
 	}
 	return country;
 };
+
 CountryHelper.loadCountry = loadCountry;
-export  default CountryHelper ;
+module.exports = CountryHelper ;

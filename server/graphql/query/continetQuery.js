@@ -1,3 +1,3 @@
 const continetQuery = `\n continents : [Continents!]!`;
-export default continetQuery;
+module.exports = continetQuery;
 

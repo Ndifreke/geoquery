@@ -1,4 +1,4 @@
-import ContinetService from '../../server/graphql/service/continent/ContinetService';
+const ContinetService = require('../../server/graphql/service/continent/ContinetService');
 
 const { continent } = ContinetService;
 

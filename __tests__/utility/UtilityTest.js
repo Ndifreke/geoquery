@@ -1,14 +1,12 @@
 /* eslint-disable no-undef */
-import utils from '../../server/graphql/util';
-
-const  { 
-	typeSchemaMerger, 
-	isAlphabet, 
+const {
+	typeSchemaMerger,
+	isAlphabet,
 	isDigit,
 	serviceMerge,
 	getStartChromeCommand,
 	platforms
-} = utils;
+} = require('../../server/graphql/util');
 
 describe('utilty test', () => {
 	it('should only be digit', () => {
@@ -33,13 +31,13 @@ describe('utilty test', () => {
 		const service1 = () => { };
 		const service2 = () => { };
 		const servicesMerge = serviceMerge(service1, service2);
-		expect(service1.name in servicesMerge ).toBe(true);
-		expect(service2.name in servicesMerge ).toBe(true);
+		expect(service1.name in servicesMerge).toBe(true);
+		expect(service2.name in servicesMerge).toBe(true);
 		expect(servicesMerge[service1.name]).toBe(service1);
 		expect(servicesMerge[service2.name]).toBe(service2);
 	});
 
-	it('should return appropriate command to start chrome', ()=>{
+	it('should return appropriate command to start chrome', () => {
 		expect(getStartChromeCommand(platforms.LINUX)).not.toBe(null);
 		expect(getStartChromeCommand(platforms.WINDOW)).not.toBe(null);
 		expect(getStartChromeCommand(platforms.MAC)).not.toBe(null);

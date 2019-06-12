@@ -1,15 +1,15 @@
-import CountryService from './country/CountryService';
-import ContinetService from './continent/ContinetService';
-const  { continents } = ContinetService;
+const CountryService = require('./country/CountryService');
+const ContinetService = require('./continent/ContinetService');
+const { continents } = ContinetService;
 
 const root = {
-	country: ({id, mode}) => {
+	country: function({ id, mode }){
 		return new CountryService({id, mode});
 	}, 
 
-	continents : () => {
+	continents : function(){
 		return continents() ;
 	}
 };
 
-export default root;
+module.exports = root;

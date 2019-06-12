@@ -1,4 +1,4 @@
-import CountryService from '../../server/graphql/service/country/CountryService';
+const CountryService = require('../../server/graphql/service/country/CountryService');
 
 let country = null;
 

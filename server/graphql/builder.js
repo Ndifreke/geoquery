@@ -1,16 +1,15 @@
-import { graphql, buildSchema } from 'graphql';
-import querySchema from './query/queryBuilder';
-import typeSchema from './type/typeBuilder';
-import geographyServices from './service/serviceBuilder';
-import util from './util';
+const { graphql, buildSchema } = require('graphql');
+const querySchema = require('./query/queryBuilder');
+const typeSchema = require('./type/typeBuilder');
+const rootServices = require('./service/serviceBuilder');
+const { typeSchemaMerger } = require('./util');
 
-const queryTypeMerge = util.typeSchemaMerger(querySchema, typeSchema);
-console.log(queryTypeMerge);
-const schema = buildSchema(queryTypeMerge);
+const querySchemaMerge = typeSchemaMerger(querySchema, typeSchema);
+const types = buildSchema(querySchemaMerge);
 
-export default async (query) => {
-	const response = await graphql(schema, query, geographyServices);
+module.exports = async function(query){
+	const response = await graphql(types, query, rootServices);
 	return Promise.resolve(response);
 };
 
-export const schemaStructure = queryTypeMerge;
+module.exports.schemaStructure = querySchemaMerge;

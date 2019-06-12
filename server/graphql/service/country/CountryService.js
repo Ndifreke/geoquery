@@ -1,5 +1,5 @@
 import CountryHelper from './countryHelper';
-import ContinentService  from '../continent/KontinetService';
+import ContinentService  from '../continent/ContinetService';
 const { continent } = ContinentService;
 
 class CountryService {

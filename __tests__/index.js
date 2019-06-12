@@ -1,6 +1,6 @@
-import './utility/UtilityTest';
-import './country/CountryHelperTest';
-import './country/CountryServiceTest';
-import './country/CountryQueryTest';
-import './continent/ContinentTest';
-import './continent/ContinentQueryTest';
+require('./utility/UtilityTest');
+require('./country/CountryHelperTest');
+require('./country/CountryServiceTest');
+require('./country/CountryQueryTest');
+require('./continent/ContinentTest');
+require('./continent/ContinentQueryTest');

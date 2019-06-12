@@ -1,4 +1,4 @@
-import CountryHelper from '../../server/graphql/service/country/countryHelper';
+const CountryHelper = require('../../server/graphql/service/country/countryHelper');
 const predictLookup = CountryHelper.predictLookupMode;
 const countryHelper = new CountryHelper();
 const LOOKUP_MODES = CountryHelper.LOOKUP_MODES;

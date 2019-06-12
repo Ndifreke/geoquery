@@ -1,4 +1,4 @@
-import {exec} from 'child_process';
+const {exec} = require('child_process');
 /**
  * Merge/combine one or more graphql services into a single source of services. 
  * @returns object a merger of services passed as argument to servicesMerge
@@ -17,10 +17,9 @@ function serviceMerge() {
  * @returns string a merger of passed argument
  */
 function typeSchemaMerger () {
-	return Array.prototype.reduce.call(arguments, (prevSchema, currentSchema) => {
-		return prevSchema.concat(currentSchema);
+	return Array.prototype.reduce.call(arguments, (accumulation, next) => {
+		return accumulation.concat(next);
 	});
-
 }
 
 function isDigit(arg){
@@ -42,7 +41,7 @@ const platforms = {
  * @param {platforms} platform host operating system
  * @returns {string} string to start chrome browser
  */
-const getStartChromeCommand = (platform)=>{
+const getStartChromeCommand = function(platform){
 	let command = null;
 	switch(platform){
 	case platforms.WINDOW:
@@ -62,14 +61,14 @@ const getStartChromeCommand = (platform)=>{
  * start Google chrome using the provided port
  * @param {Number} port 
  */
-const startBrowser = (port) => {
+const startBrowser = function(port){
 	const command = `${getStartChromeCommand(process.platform)} http://localhost:${port}`;
 	exec(command, (err, stdout, stderr) => {
 		if(err)console.log(err,stderr, stdout);
 	});
 };
 
-export default { 
+module.exports = { 
 	isAlphabet, 
 	isDigit, 
 	typeSchemaMerger, 

@@ -1,12 +1,10 @@
-import util from '../util';
-import countryType from './countryType';
-import continentType from './continentType';
-
+const util = require('../util');
+const countryType = require('./countryType');
+const continentType = require('./continentType');
 
 const typeSchema = util.typeSchemaMerger(
 	countryType,
 	continentType
 );
-
-export default typeSchema;
+module.exports = typeSchema;
 

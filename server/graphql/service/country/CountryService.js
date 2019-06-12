@@ -1,6 +1,5 @@
-import CountryHelper from './countryHelper';
-import ContinentService  from '../continent/ContinetService';
-const { continent } = ContinentService;
+const CountryHelper = require('./countryHelper');
+const { continent } = require('../continent/ContinetService');
 
 class CountryService {
 
@@ -50,4 +49,4 @@ class CountryService {
 
 }
 
-export default CountryService;
+module.exports = CountryService;

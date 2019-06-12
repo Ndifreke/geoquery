@@ -1,6 +1,5 @@
 module.exports = 
-`
-type Country {
+`type Country {
   name: String !
   phone: String !
   areaCode: String !

@@ -1,6 +1,6 @@
-import geoquery from '../../server/index';
+const geoquery = require('../../server/index');
 
-describe('country geoquery request', ()=> {
+describe('country geoquery request', () => {
 	it('should request for country data', async ()=>{
 		const response = await geoquery(`{ 
     country( id:"Nigeria", mode:"name"){

@@ -1,26 +1,25 @@
 /* eslint-disable no-console */
-import { createServer } from 'http';
-import { schemaStructure } from './graphql/builder';
-import { readFileSync } from 'fs';
-import dotenv from 'dotenv';
-import geoquery from './index';
-import util from './graphql/util';
+const { createServer } = require('http');
+const { schemaStructure } = require('./graphql/builder');
+const { readFileSync } = require('fs');
+const dotenv = require('dotenv');
+const geoquery = require('./index');
+const util = require('./graphql/util');
 
 const startBrowser = util.startBrowser;
-
 dotenv.config();
 
-const getHTML = () => {
+const getHTML = function(){
 	const htmlTemplate = readFileSync(__dirname + '/index.html');
 	const html = htmlTemplate.toString().replace('#graphQLschema', schemaStructure );
 	return html;
 };
 
-const handleGetRequest = (req, res) => {
+const handleGetRequest = function(req, res){
 	res.end(getHTML());
 };
 
-const handlePostRequest = (req, res) => {
+const handlePostRequest = function(req, res){
 	req.on('data', async (data) => {
 		console.log('POST:\n', data.toString());
 		const result = await geoquery(data.toString());
@@ -31,10 +30,10 @@ const handlePostRequest = (req, res) => {
 /**
  * start a web browser to demo the project
  */
-const runDemo = () => {
+const runDemo = function(){
 	const app = createServer();
   
-	app.on('request', async (req, res) => {
+	app.on('request', async function(req, res){
 
 		switch (req.method) {
 		case 'GET':
@@ -55,5 +54,5 @@ const runDemo = () => {
 };
 
 runDemo();
-export default runDemo;
+module.exports = runDemo;
 

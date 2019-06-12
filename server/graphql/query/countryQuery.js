@@ -1,3 +1,3 @@
 const countryQuery = `\n country(id : String!, mode: String ): Country,`;
-export default countryQuery;
+module.exports = countryQuery;
 

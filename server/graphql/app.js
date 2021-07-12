@@ -1,7 +1,7 @@
 const { graphql, buildSchema } = require('graphql');
-const querySchema = require('./query/queryBuilder');
-const typeSchema = require('./type/typeBuilder');
-const rootServices = require('./service/serviceBuilder');
+const querySchema = require('./queryTypeBuilder');
+const typeSchema = require('./schemaBuilder');
+const rootServices = require('./serviceBuilder');
 const { typeSchemaMerger } = require('./util');
 
 const querySchemaMerge = typeSchemaMerger(querySchema, typeSchema);

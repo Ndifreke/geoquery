@@ -1,5 +1,5 @@
 import City from "../city/City";
-import CityService from "../city/cityService";
+import CityService from "../city/CityService";
 import CountryService from "../country/CountryService";
 
 export type StateType = {

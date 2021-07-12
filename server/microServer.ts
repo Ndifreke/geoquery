@@ -1,11 +1,9 @@
 import { createServer } from 'http'
 const { schemaStructure } = require('./graphql/app');
 const { readFileSync } = require('fs');
-
-//const dotenv = require('dotenv');
+const dotenv = require('dotenv');
 import geoquery from './geoquery';
-//dotenv.config();
-
+dotenv.config();
 
 const getHTML = function () {
     const htmlTemplate = readFileSync(__dirname + '/index.html');
@@ -26,9 +24,7 @@ const handlePostRequest = function (req, res) {
 };
 
 type MicroServerArgType = {
-
     port?: any
-
     callback?: (arg: any) => void
 }
 
@@ -37,7 +33,6 @@ type MicroServerArgType = {
  * @param param0 
  */
 const microServer = function ({ port, callback }: MicroServerArgType) {
-
     const PORT = port || process.env.PORT || 80
 
     const app = createServer();
@@ -56,9 +51,7 @@ const microServer = function ({ port, callback }: MicroServerArgType) {
     });
 
     app.listen(PORT);
-
     console.log(`Listening on`, PORT, `http://localhost:${PORT}`,process.env.PORT);
-
     callback?.({ port: PORT });
 };
 

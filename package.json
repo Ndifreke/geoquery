@@ -33,7 +33,7 @@
     "demo-server": "ts-node server/demo.ts",
     "build": "tsc && npm run postbuild",
     "start": "node build/server.js",
-    "postbuild": "cp -R server/geo-data build/geo-data && cp server/index.html build/index.html && npm run start",
+    "postbuild": "cp -R server/geo-data build/geo-data && cp server/index.html build/index.html",
     "watch-server": "nodemon server/createServer.ts",
     "type-check": "tsc --noEmit "
   }

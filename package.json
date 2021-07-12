@@ -29,10 +29,12 @@
   "scripts": {
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "test": "jest __tests__/index.js --coverage",
-    "example": "ts-node server/example.ts",
-    "build-demo": "npm run build && node built/demo.js",
-    "build": "tsc && cp -R server/geo-data built/geo-data && cp server/index.html built/index.html",
-    "develop": "nodemon server/develop.ts",
+    "start-server": "ts-node server/createServer.ts",
+    "demo-server": "ts-node server/demo.ts",
+    "build": "tsc && npm run postbuild",
+    "start": "node build/server.js",
+    "postbuild": "cp -R server/geo-data build/geo-data && cp server/index.html build/index.html && npm run start",
+    "watch-server": "nodemon server/createServer.ts",
     "type-check": "tsc --noEmit "
   }
 }

@@ -61,7 +61,7 @@ const getStartChromeCommand = function(platform){
  * start Google chrome using the provided port
  * @param {Number} port 
  */
-const startBrowser = function(port){
+const startBrowser = function({port}){
 	const command = `${getStartChromeCommand(process.platform)} http://localhost:${port}`;
 	exec(command, (err, stdout, stderr) => {
 		if(err)console.log(err,stderr, stdout);

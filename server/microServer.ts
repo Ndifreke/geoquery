@@ -38,13 +38,15 @@ const microServer = function ({ port, callback }: MicroServerArgType) {
     const app = createServer();
 
     app.on('request', async function (req, res) {
-
+        console.log(req.host)
+        res.setHeader("Access-Control-Allow-Origin","*")
         switch (req.method) {
             case 'GET':
                 handleGetRequest(req, res);
                 break;
 
             case 'POST':
+               
                 handlePostRequest(req, res);
                 break;
         }

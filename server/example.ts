@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 const { createServer } = require('http');
-const { schemaStructure } = require('./graphql/builder');
+const { schemaStructure } = require('./graphql/app');
 const { readFileSync } = require('fs');
 const dotenv = require('dotenv');
-const geoquery = require('./index');
+import geoquery from './index';
 const util = require('./graphql/util');
 
 const startBrowser = util.startBrowser;
@@ -21,7 +21,6 @@ const handleGetRequest = function(req, res){
 
 const handlePostRequest = function(req, res){
 	req.on('data', async (data) => {
-		console.log('POST:\n', data.toString());
 		const result = await geoquery(data.toString());
 		res.end(JSON.stringify(result,null, 2));
 	});
@@ -32,7 +31,7 @@ const handlePostRequest = function(req, res){
  */
 const runDemo = function(){
 	const app = createServer();
-  
+	console.log("Running Example")
 	app.on('request', async function(req, res){
 
 		switch (req.method) {
@@ -42,9 +41,9 @@ const runDemo = function(){
     
 		case 'POST':
 			handlePostRequest(req, res);
-			break;
-		}
-	});
+			break; 
+		} 
+	}); 
   
 	const PORT = 8080;
 	app.listen(PORT);
@@ -53,6 +52,7 @@ const runDemo = function(){
 	startBrowser(PORT);
 };
 
-runDemo();
-module.exports = runDemo;
+//runDemo();
+// module.exports = runDemo;
 
+export default runDemo;

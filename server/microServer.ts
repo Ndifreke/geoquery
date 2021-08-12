@@ -3,7 +3,10 @@ const { schemaStructure } = require('./graphql/app');
 const { readFileSync } = require('fs');
 const dotenv = require('dotenv');
 import geoquery from './geoquery';
+<<<<<<< HEAD
 dotenv.config();
+=======
+>>>>>>> e6700f9 (remove unused code)
 
 const getHTML = function () {
     const htmlTemplate = readFileSync(__dirname + '/index.html');
@@ -38,7 +41,6 @@ const microServer = function ({ port, callback }: MicroServerArgType) {
     const app = createServer();
 
     app.on('request', async function (req, res) {
-        console.log(req.host)
         res.setHeader("Access-Control-Allow-Origin","*")
         switch (req.method) {
             case 'GET':

@@ -1,32 +1,40 @@
 {
-    "name": "geoquery",
-    "version": "0.6.2",
-    "keywords": [
-        "util",
-        "functional",
-        "server",
-        "client",
-        "browser",
-        "geography",
-        "places"
-    ],
-    "author": "Ndifreke Ekim",
-    "contributors": [],
-    "dependencies": {
-        "dotenv": "^8.0.0",
-        "graphql": "latest"
-    },
-    "devDependencies": {
-        "nodemon": "^1.19.0",
-        "eslint": "^5.16.0",
-        "husky": "2.3.0",
-        "jest": "^24.8.0",
-        "coveralls": "^3.0.3"
-    },
-    "scripts": {
-        "coveralls": "cat ./coverage/lcov.info | coveralls",
-        "test": "jest __tests__/index.js --coverage",
-        "demo": "node server/example",
-        "nodemon": "nodemon server/example.js"
-    }
+  "name": "geoquery",
+  "version": "0.6.2",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser",
+    "geography",
+    "places"
+  ],
+  "author": "Ndifreke Ekim",
+  "contributors": [],
+  "dependencies": {
+    "@babel/types": "^7.14.5",
+    "dotenv": "^8.0.0",
+    "graphql": "latest",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.3",
+    "eslint": "^5.16.0",
+    "husky": "2.3.0",
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.11"
+  },
+  "scripts": {
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "test": "jest __tests__/index.js --coverage",
+    "start-server": "ts-node server/createServer.ts",
+    "demo-server": "ts-node server/demo.ts",
+    "build": "tsc && npm run postbuild",
+    "start": "node build/server.js",
+    "postbuild": "cp -R server/geo-data build/geo-data && cp server/index.html build/index.html",
+    "watch-server": "nodemon server/createServer.ts",
+    "type-check": "tsc --noEmit "
+  }
 }

@@ -1,6 +1,6 @@
 const CountryHelper = require('../../server/graphql/service/country/countryHelper');
 const predictLookup = CountryHelper.predictLookupMode;
-const countryHelper = new CountryHelper();
+const countryHelper = new CountryHelper.default();
 const LOOKUP_MODES = CountryHelper.LOOKUP_MODES;
 
 describe('Country Helper', () => {

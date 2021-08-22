@@ -13,7 +13,10 @@
   "author": "Ndifreke Ekim",
   "contributors": [],
   "dependencies": {
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
     "@babel/types": "^7.14.5",
+    "@types/jest": "^27.0.1",
     "dotenv": "^8.0.0",
     "graphql": "latest",
     "ts-node": "^10.1.0",
@@ -33,7 +36,7 @@
     "demo-server": "ts-node server/demo.ts",
     "build": "tsc && npm run postbuild",
     "start": "node build/server.js",
-    "postbuild": "cp -R server/geo-data build/geo-data && cp server/index.html build/index.html && npm run start",
+    "postbuild": "cp -R server/geo-data build/geo-data && cp server/index.html build/index.html",
     "watch-server": "nodemon server/createServer.ts",
     "type-check": "tsc --noEmit "
   }
